@@ -1,38 +1,84 @@
 import tkinter
-from tkinter import *
-from tkinter import ttk
 
-def calculate(*args):
-    try:
-        value = float(feet.get())
-        meters.set((0.3048 * value * 10000.0 + 0.5)/10000.0)
-    except ValueError:
-        pass
+class testapphome(tkinter.Tk):
+    def __init__(self,parent):
+        tkinter.Tk.__init__(self,parent)
+        self.parent = parent
+        self.minsize(width=800, height=800)
+        self.resizable(False,False)
+        self.geometry(self.geometry())
+        self.initialize()
 
-root = Tk()
-root.title("Feet to Meters")
+    def initialize(self):
+        self.grid()
 
-mainframe = ttk.Frame(root, padding="3 3 12 12")
-mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-mainframe.columnconfigure(0, weight=1)
-mainframe.rowconfigure(0, weight=1)
+        # TEXT INPUT FRAME
+        containerentry = tkinter.Frame(self, borderwidth=1, relief="sunken", width=475, height=100)
+        containerentry.place(x=25, y=675)
+        containerentry.grid_propagate(False)
+        containerentry.grid_columnconfigure(0,weight=1)
 
-feet = StringVar()
-meters = StringVar()
+        # TEXT INPUT BAR
+        self.textinVariable = tkinter.StringVar()
+        self.textinp = tkinter.Text(containerentry, bd = 6, height = 4)
+        self.textinp.grid(column=0,row=1,sticky='EW')
+        self.textinp.bind("<Return>", self.OnPressEnter)
+        #self.textVariable.set(u"Enter text here.")
 
-feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
-feet_entry.grid(column=2, row=1, sticky=(W, E))
+        # TEXT OUTPUT FRAME
+        containeroutpt = tkinter.Frame(self, borderwidth=1, relief="sunken", width=550, height=650)
+        containeroutpt.place(x=25, y=25)
+        containeroutpt.grid_propagate(False)
+        containeroutpt.grid_columnconfigure(0,weight=1)
 
-ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
-ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
+        # TEXT OUTPUT BAR
+        self.textoutVariable = tkinter.StringVar()
+        self.textout = tkinter.Text(containeroutpt, bd = 1, height = 32, bg = "light blue")
+        self.textout.grid(column=0,row=1,sticky='EW')
+        #self.textout.bind("<Return>", self.OnPressEnter)
+        #self.textVariable.set(u"Enter text here.")
 
-ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
-ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
-ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
+        # SEND BUTTON FRAME
+        containersend = tkinter.Frame(self, borderwidth=1, relief="sunken", width=75, height=100)
+        containersend.place(x=500, y=675)
+        containersend.grid_propagate(False)
+        containersend.grid_columnconfigure(0,weight=1)
 
-for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
+        # SEND BUTTON
+        sendbutton = tkinter.Button(containersend,text="SEND", height=4, bg="light slate gray")
+        sendbutton.grid(column=0,row=0, sticky="EW")
 
-feet_entry.focus()
-root.bind('<Return>', calculate)
+        # INFO BUTTON FRAME
+        containerinfo = tkinter.Frame(self, borderwidth=1, relief="sunken", width=125, height=75)
+        containerinfo.place(x=625, y=100)
+        containerinfo.grid_propagate(False)
+        containerinfo.grid_columnconfigure(0,weight=1)
 
-root.mainloop()
+        # INFO BUTTON
+        infobutton = tkinter.Button(containerinfo,text="About App", command=self.OnButtonClick, height=3)
+        infobutton.grid(column=0,row=0, sticky="EW")
+
+        # QUIT BUTTON FRAME
+        containerquit = tkinter.Frame(self, borderwidth=1, relief="sunken", width=125, height=75)
+        containerquit.place(x=625, y=200)
+        containerquit.grid_propagate(False)
+        containerquit.grid_columnconfigure(0,weight=1)
+
+        # QUIT BUTTON
+        quitButton = tkinter.Button(containerquit, text="Quit",command=self.quit, height=3)
+        quitButton.grid(row=0, column=0, sticky="EW")
+
+
+    def OnButtonClick(self):
+        #self.labelVariable.set(self.entryVariable.get()+" (You clicked the button)" )
+        return
+
+    def OnPressEnter(self,event):
+        #self.labelVariable.set(self.entryVariable.get()+" (You pressed ENTER)")
+        return
+
+
+if __name__ == "__main__":
+    app = testapphome(None)
+    app.title('V1_APP')
+    app.mainloop()

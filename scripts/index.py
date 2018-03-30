@@ -23,7 +23,7 @@ class testapphome(tkinter.Tk):
         self.textinVariable = tkinter.StringVar()
         self.textinp = tkinter.Text(containerentry, bd = 6, height = 4)
         self.textinp.grid(column=0,row=1,sticky='EW')
-        self.textinp.bind("<Return>", self.OnPressEnter)
+        self.textinp.bind("<Return>", self.OnSendClick)
         #self.textVariable.set(u"Enter text here.")
 
         # TEXT OUTPUT FRAME
@@ -46,7 +46,7 @@ class testapphome(tkinter.Tk):
         containersend.grid_columnconfigure(0,weight=1)
 
         # SEND BUTTON
-        sendbutton = tkinter.Button(containersend,text="SEND", height=4, bg="light slate gray")
+        sendbutton = tkinter.Button(containersend,text="SEND", command=self.OnSendClick, height=4, bg="light slate gray")
         sendbutton.grid(column=0,row=0, sticky="EW")
 
         # INFO BUTTON FRAME
@@ -74,8 +74,8 @@ class testapphome(tkinter.Tk):
         #print("check")
         os.system('about.py')
 
-    def OnPressEnter(self,event):
-        #self.labelVariable.set(self.entryVariable.get()+" (You pressed ENTER)")
+    def OnSendClick(self, event):
+        print("enter testing")
         return
 
 

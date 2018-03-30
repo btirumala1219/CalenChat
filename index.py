@@ -1,4 +1,5 @@
 import tkinter
+import os
 
 class testapphome(tkinter.Tk):
     def __init__(self,parent):
@@ -55,7 +56,7 @@ class testapphome(tkinter.Tk):
         containerinfo.grid_columnconfigure(0,weight=1)
 
         # INFO BUTTON
-        infobutton = tkinter.Button(containerinfo,text="About App", command=self.OnButtonClick, height=3)
+        infobutton = tkinter.Button(containerinfo,text="About App", command=self.OnAboutClick, height=3)
         infobutton.grid(column=0,row=0, sticky="EW")
 
         # QUIT BUTTON FRAME
@@ -69,9 +70,9 @@ class testapphome(tkinter.Tk):
         quitButton.grid(row=0, column=0, sticky="EW")
 
 
-    def OnButtonClick(self):
-        #self.labelVariable.set(self.entryVariable.get()+" (You clicked the button)" )
-        return
+    def OnAboutClick(self):
+        print("check")
+        os.system('about.py')
 
     def OnPressEnter(self,event):
         #self.labelVariable.set(self.entryVariable.get()+" (You pressed ENTER)")

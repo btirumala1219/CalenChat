@@ -1,6 +1,8 @@
 import tkinter
+import os
 
-file = open("about.txt", "r")
+#fpath = os.path.join(direct, "about.txt")
+file = open("../docs/about.txt", "r")
 #print(file.read())
 name = file.readline()
 #print(name)
@@ -13,7 +15,7 @@ class testabout(tkinter.Tk):
     def __init__(self,parent):
         tkinter.Tk.__init__(self,parent)
         self.parent = parent
-        self.minsize(width=800, height=800)
+        self.minsize(width=500, height=400)
         self.resizable(False,False)
         self.geometry(self.geometry())
         self.initialize()
@@ -33,7 +35,7 @@ class testabout(tkinter.Tk):
 
         # QUIT BUTTON FRAME
         containerquit = tkinter.Frame(self, borderwidth=1, relief="sunken", width=125, height=75)
-        containerquit.place(x=625, y=200)
+        containerquit.place(x=250, y=200)
         containerquit.grid_propagate(False)
         containerquit.grid_columnconfigure(0,weight=1)
 

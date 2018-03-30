@@ -71,7 +71,7 @@ class testapphome(tkinter.Tk):
 
 
     def OnAboutClick(self):
-        print("check")
+        #print("check")
         os.system('about.py')
 
     def OnPressEnter(self,event):

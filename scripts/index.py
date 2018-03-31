@@ -1,5 +1,8 @@
 import tkinter
+import json
 import os
+import comm
+import updatetext
 
 class testapphome(tkinter.Tk):
     def __init__(self,parent):
@@ -23,7 +26,7 @@ class testapphome(tkinter.Tk):
         self.textinVariable = tkinter.StringVar()
         self.textinp = tkinter.Text(containerentry, bd = 6, height = 4)
         self.textinp.grid(column=0,row=1,sticky='EW')
-        self.textinp.bind("<Return>", self.OnSendClick)
+        #self.textinp.bind("<Return>", self.OnSendClick)
         #self.textVariable.set(u"Enter text here.")
 
         # TEXT OUTPUT FRAME
@@ -74,8 +77,11 @@ class testapphome(tkinter.Tk):
         #print("check")
         os.system('about.py')
 
-    def OnSendClick(self, event):
+    def OnSendClick(self):
         print("enter testing")
+        return
+
+    def populate():
         return
 
 

@@ -9,4 +9,4 @@ def load():
         data = json.load(json_file)
         start = data['bot']['text']
 
-    return start
+    return data

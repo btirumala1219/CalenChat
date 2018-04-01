@@ -79,9 +79,13 @@ class testapphome(tkinter.Tk):
 
     def OnSendClick(self):
         print("enter testing")
+        self.populate()
         return
 
-    def populate():
+    def populate(self):
+        check = comm.load()
+        botdata = check['bot']['text']
+        self.textout.insert(2.0,botdata)
         return
 
 

@@ -82,6 +82,12 @@ class testapphome(tkinter.Tk):
         self.populate()
         return
 
+#       TODO:
+#       We set initialize function to have 'Hello There' on boot
+#       We need one function to be called that sends input text into json and updates field
+#       We need one function that chooses the appropriate response and replies
+#       Both of these functions can be called from here but best to be written in the comm.py file
+
     def populate(self):
         check = comm.load()
         botdata = check['bot']['text']

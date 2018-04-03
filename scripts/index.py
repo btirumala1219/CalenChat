@@ -102,5 +102,5 @@ class testapphome(tkinter.Tk):
 
 if __name__ == "__main__":
     app = testapphome(None)
-    app.title('V1_APP')
+    app.title('V1_APPTEST')
     app.mainloop()

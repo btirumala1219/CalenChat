@@ -1,5 +1,8 @@
 {
     "bot": {
         "text": "Hello there!"
+    },
+    "user": {
+        "text": "testing"
     }
 }

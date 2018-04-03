@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import *
 import json
 import os
 import comm
@@ -79,6 +80,9 @@ class testapphome(tkinter.Tk):
 
     def OnSendClick(self):
         print("enter testing")
+        input = self.textinp.get("1.0",'end-1c')
+        print(input)
+        self.textinp.delete("1.0", END)
         self.populate()
         return
 
@@ -91,7 +95,8 @@ class testapphome(tkinter.Tk):
     def populate(self):
         check = comm.load()
         botdata = check['bot']['text']
-        self.textout.insert(2.0,botdata)
+        userdata = check['user']['text']
+        self.textout.insert(END, botdata)
         return
 
 

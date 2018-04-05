@@ -13,6 +13,7 @@ class testapphome(tkinter.Tk):
         self.resizable(False,False)
         self.geometry(self.geometry())
         self.initialize()
+        self.populate()
 
     def initialize(self):
         self.grid()
@@ -79,11 +80,12 @@ class testapphome(tkinter.Tk):
         os.system('about.py')
 
     def OnSendClick(self):
-        print("enter testing")
+        #print("enter testing")
         input = self.textinp.get("1.0",'end-1c')
-        print(input)
+        #print(input)
+        self.addToText(input)
         self.textinp.delete("1.0", END)
-        self.populate()
+        #self.populate()
         return
 
 #       TODO:
@@ -96,8 +98,13 @@ class testapphome(tkinter.Tk):
         check = comm.load()
         botdata = check['bot']['text']
         userdata = check['user']['text']
-        self.textout.insert(END, botdata)
+        self.textout.insert(1.0,"bot: " + botdata + "\n")
         return
+
+    def addToText(self, text):
+        self.textout.insert(END,"User: ")
+        self.textout.insert(END ,text)
+        self.textout.insert(END, "\n")
 
 
 if __name__ == "__main__":

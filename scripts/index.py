@@ -118,6 +118,7 @@ class testapphome(tkinter.Tk):
         input = self.textinp.get("1.0",'end-1c')
         #print(input)
         self.addToText(input)
+        self.commandCheck(input)
         self.textinp.delete("1.0", END)
         #self.populate()
         return
@@ -132,7 +133,7 @@ class testapphome(tkinter.Tk):
         check = comm.load()
         botdata = check['bot']['text']
         userdata = check['user']['text']
-        self.textout.insert(1.0,"bot: " + botdata + "\n")
+        self.textout.insert(1.0,"Bot: " + botdata + "\n")
 
 
     def loadData(self):
@@ -147,8 +148,15 @@ class testapphome(tkinter.Tk):
         self.textout.insert(END ,text)
         self.textout.insert(END, "\n")
 
-    def commandCheck(self, text):
+    def addToTextBot(self, text):
+        self.textout.insert(END,"Bot: ")
+        self.textout.insert(END ,text)
+        self.textout.insert(END, "\n")
 
+    def commandCheck(self, text):
+        check = comm.checkCommand(text)
+        #check what type of function this is
+        self.addToTextBot(check)
         return
 
     def writeToCSV(self):

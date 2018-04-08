@@ -5,6 +5,8 @@ import json
 import os
 import comm
 import updatetext
+from time import sleep
+
 
 class testapphome(tkinter.Tk):
     def __init__(self,parent):
@@ -42,6 +44,7 @@ class testapphome(tkinter.Tk):
         self.textoutVariable = tkinter.StringVar()
         self.textout = tkinter.Text(containeroutpt, bd = 1, height = 32, bg = "light blue")
         self.textout.grid(column=0,row=1,sticky='EW')
+        self.textout.config(state=DISABLED)
         #self.textout.bind("<Return>", self.OnPressEnter)
         #self.textVariable.set(u"Enter text here.")
 
@@ -110,8 +113,10 @@ class testapphome(tkinter.Tk):
         os.system('about.py')
 
     def clearText(self):
+        self.textout.config(state=NORMAL)
         self.textout.delete("2.0", END)
         self.textout.insert(END,"\n")
+        self.textout.config(state=DISABLED)
 
     def OnSendClick(self):
         #print("enter testing")
@@ -123,40 +128,44 @@ class testapphome(tkinter.Tk):
         #self.populate()
         return
 
-#       TODO:
-#       We set initialize function to have 'Hello There' on boot
-#       We need one function to be called that sends input text into json and updates field
-#       We need one function that chooses the appropriate response and replies
-#       Both of these functions can be called from here but best to be written in the comm.py file
-
     def populate(self):
         check = comm.load()
         botdata = check['bot']['text']
         userdata = check['user']['text']
+        self.textout.config(state=NORMAL)
         self.textout.insert(1.0,"Bot: " + botdata + "\n")
+        self.textout.config(state=DISABLED)
 
 
     def loadData(self):
+        self.textout.config(state=NORMAL)
         self.textout.delete("1.0", END)
         with open('../logs/test.csv', "rt") as csvfile:
             spamreader=csv.reader(csvfile)
             for row in spamreader:
                 self.textout.insert(END, ', '.join(row))
+        self.textout.config(state=DISABLED)
 
     def addToText(self, text):
+        self.textout.config(state=NORMAL)
         self.textout.insert(END,"User: ")
         self.textout.insert(END ,text)
         self.textout.insert(END, "\n")
+        self.textout.config(state=DISABLED)
 
     def addToTextBot(self, text):
+        self.textout.config(state=NORMAL)
         self.textout.insert(END,"Bot: ")
         self.textout.insert(END ,text)
         self.textout.insert(END, "\n")
+        self.textout.config(state=DISABLED)
 
     def commandCheck(self, text):
         check = comm.checkCommand(text)
         #check what type of function this is
-        self.addToTextBot(check)
+        self.addToTextBot(check[0])
+        if(check[1] == 'FALSE'):
+            checkagain = comm.checkCommand(text)
         return
 
     def writeToCSV(self):

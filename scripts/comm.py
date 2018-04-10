@@ -4,6 +4,10 @@ import os
 import updatetext
 import index
 import random
+import datetime
+
+now = datetime.datetime.now()
+today = str(now.month)+"."+str(now.day)+"."+str(now.year)
 
 def load():
     with open('../logs/testlog.json') as json_file:
@@ -13,8 +17,9 @@ def load():
     return data
 
 def checkCommand(text):
-    text.lower()
+    text=text.lower()
     if 'hi' in text or 'hello' in text:
+        print(today)
         return ('What can I help you with?', 'TRUE')
     if "me a joke" in text:
         x = random.randint(0,2)
@@ -22,6 +27,12 @@ def checkCommand(text):
         with open('../logs/jokes.json') as json_file:
             data = json.load(json_file)
             start = data[y]['text']
+            return (start, 'TRUE')
+    if "have to do today" in text:
+        with open('../logs/cal.json') as json_file:
+            data = json.load(json_file)
+            start = 'Today, you have ' + data[today]["name"] + ' at ' + data[today]["time"] + ' for ' + data[today]["duration"] + ". Would you like more details?"
+            dat=("check":"true")
             return (start, 'TRUE')
     else:
         return ("I couldnt understand what you said", 'TRUE')

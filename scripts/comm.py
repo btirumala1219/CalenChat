@@ -34,5 +34,6 @@ def checkCommand(text):
             start = 'Today, you have ' + data[today]["name"] + ' at ' + data[today]["time"] + ' for ' + data[today]["duration"] + ". Would you like more details?"
             dat=("check":"true")
             return (start, 'TRUE')
+            #TODO: Figure out how to add to cal.json
     else:
         return ("I couldnt understand what you said", 'TRUE')

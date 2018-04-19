@@ -36,5 +36,7 @@ def checkCommand(text):
     if "what is today" in text:
         return ("Today is " + today, 'TRUE')
         #TODO: Figure out how to add to cal.json
+    if "do you love me" in text:
+        return("nahhh u ugly", 'TRUE')    
     else:
         return ("I couldnt understand what you said", 'TRUE')

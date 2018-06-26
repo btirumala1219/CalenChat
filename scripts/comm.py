@@ -37,6 +37,18 @@ def checkCommand(text):
         return ("Today is " + today, 'TRUE')
         #TODO: Figure out how to add to cal.json
     if "do you love me" in text:
-        return("nahhh u ugly", 'TRUE')    
+        return("nahhh u ugly", 'TRUE')
+    if "add to schedule" in text:
+        return("Enter the schedule to add in the following format: addsched,date,time,details,name", 'TRUE')
+    if "addsched" in text:
+        dataList = text.split(',')
+        d = {'date':dataList[1], 'time':dataList[2], 'details':dataList[3], 'name':dataList[4]}
+        print(d)
+        return("Event added",'TRUE')
+    if "test" in text:
+        with open('../logs/cal.json') as json_file:
+            data = json.load(json_file)
+            print(data)
+            return("Testing",'TRUE')
     else:
         return ("I couldnt understand what you said", 'TRUE')

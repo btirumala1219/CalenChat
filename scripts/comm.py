@@ -31,7 +31,7 @@ def checkCommand(text):
     if "have to do today" in text:
         with open('../logs/cal.json') as json_file:
             data = json.load(json_file)
-            start = 'Today, you have ' + data[today]["name"] + ' at ' + data[today]["time"] + ' for ' + data[today]["duration"] + ". Would you like more details?"
+            start = data
             return (start, 'TRUE')
     if "what is today" in text:
         return ("Today is " + today, 'TRUE')
@@ -43,6 +43,8 @@ def checkCommand(text):
     if "addsched" in text:
         dataList = text.split(',')
         d = {'date':dataList[1], 'time':dataList[2], 'details':dataList[3], 'name':dataList[4]}
+        with open('../logs/cal.json', mode='w', encoding='utf-8') as json_file:
+            json.dump(d, json_file)
         print(d)
         return("Event added",'TRUE')
     if "test" in text:
